@@ -15,4 +15,6 @@
 
 - Sound effects, sfxer mostly
 
+- Definitely needs abilities, either per weapon or some other kind of skilltree
+
 - Don't forget Fiverr exists lmao
