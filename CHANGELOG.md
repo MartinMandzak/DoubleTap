@@ -6,4 +6,4 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
--   Transform of mouse position with rotated capture area
+-	Initial commit
