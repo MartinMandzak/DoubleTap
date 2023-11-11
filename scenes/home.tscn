@@ -1,3 +1,54 @@
-[gd_scene format=3 uid="uid://dmesnhmkv4065"]
+[gd_scene load_steps=14 format=3 uid="uid://dmesnhmkv4065"]
+
+[ext_resource type="PackedScene" uid="uid://ds5qq0mhhfcka" path="res://player.tscn" id="1_gfd0t"]
+[ext_resource type="Script" path="res://scenes/home.gd" id="1_nkknn"]
+[ext_resource type="Script" path="res://player.gd" id="2_pbrjw"]
+[ext_resource type="Script" path="res://scenes/Camera.gd" id="4_dym52"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_672r7"]
+size = Vector3(5.64064, 0.17175, 5.12766)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_rcb5n"]
+
+[sub_resource type="PlaceholderMaterial" id="PlaceholderMaterial_0px4r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5ux2"]
+next_pass = SubResource("PlaceholderMaterial_0px4r")
+albedo_texture = SubResource("CanvasTexture_rcb5n")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_b57l3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sw22c"]
+albedo_texture = SubResource("CanvasTexture_b57l3")
+
+[sub_resource type="BoxMesh" id="BoxMesh_trd72"]
+size = Vector3(6, 0.3, 5.3)
+
+[sub_resource type="Environment" id="Environment_bltfk"]
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_blp26"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_nkknn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49012e-08, -0.149569, 0.00362849)
+shape = SubResource("BoxShape3D_672r7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, -0.212387, 0.0196049)
+material_override = SubResource("StandardMaterial3D_i5ux2")
+material_overlay = SubResource("StandardMaterial3D_sw22c")
+mesh = SubResource("BoxMesh_trd72")
+
+[node name="Player_character" parent="." instance=ExtResource("1_gfd0t")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.00642431, 0.338052, -0.0120702)
+script = ExtResource("2_pbrjw")
+
+[node name="Camera3D" type="Camera3D" parent="Player_character"]
+environment = SubResource("Environment_bltfk")
+attributes = SubResource("CameraAttributesPhysical_blp26")
+current = true
+script = ExtResource("4_dym52")
